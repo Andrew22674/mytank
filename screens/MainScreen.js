@@ -65,7 +65,7 @@ export default class MainScreen extends Component {
                     <Grid style={{ padding: 20 }}>
                         <Row>
                             <Card style={styles.cardStyle}>
-                                <Button onPress={() => this.props.navigation.navigate('Store')} >
+                                <Button onPress={() => this.props.navigation.navigate('WaterLevel')} >
                                     <Text>Nivel de Agua</Text>
                                 </Button>
 

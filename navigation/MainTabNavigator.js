@@ -9,7 +9,8 @@ import SettingsScreen from '../screens/SettingsScreen';
 import LoginScreen from '../screens/LoginScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import MainScreen from '../screens/MainScreen';
-import StoresScreen from '../screens/StoresScreen';
+//import StoresScreen from '../screens/StoresScreen';
+import WaterLevelScreen from '../screens/WaterLevelScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -36,7 +37,7 @@ SignUpStack.path = '';
 const HomeStack = createStackNavigator(
   {
     Home: MainScreen,
-    Store: StoresScreen
+    WaterLevel: WaterLevelScreen
   },
   config
 );
@@ -59,7 +60,7 @@ HomeStack.path = '';
 
 const LinksStack = createStackNavigator(
   {
-    Links: LinksScreen,
+    WaterLevel: WaterLevelScreen,
   },
   config
 );

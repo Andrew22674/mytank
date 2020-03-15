@@ -5,7 +5,7 @@ import firebase from 'firebase';
 import { StyleSheet, Platform, View, TouchableHighlight, Image, StatusBar } from 'react-native';
 import { Card, Body, Container, Content, Text, Title, Form, Button, Picker, Icon, CardItem, Left, Right, Thumbnail, Header } from 'native-base'
 import { Col, Row, Grid } from "react-native-easy-grid";
-export default class StoresScreen extends Component {
+export default class WaterLevelScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     },
 });
 
-StoresScreen.navigationOptions = {
+WaterLevelScreen.navigationOptions = {
     header: null,
   };
   
