@@ -62,7 +62,7 @@ export default class WaterLevelScreen extends Component {
                         </Form>
                     </Right>
                 </Header>
-                <Content style = {styles.container}>
+                <Content contentContainerStyle = {styles.container}>
                     <Row>
                         
                         
@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 });
+
 
 WaterLevelScreen.navigationOptions = {
     header: null,
