@@ -3,7 +3,7 @@ import { ExpoConfigView } from '@expo/samples';
 import firebase from 'firebase';
 
 import { StyleSheet, Platform, View, TouchableHighlight, Image, StatusBar } from 'react-native';
-import { Card, Body, Container, Content, Text, Title, Form, Button, Picker, Icon, CardItem, Left, Right, Thumbnail, Header } from 'native-base'
+import { Card, Body, Container, Content, Text, Title, Form, Button,Label, Picker, Icon, CardItem, Left, Right, Thumbnail, Header } from 'native-base'
 import { Col, Row, Grid } from "react-native-easy-grid";
 export default class WaterLevelScreen extends Component {
     constructor(props) {
@@ -113,7 +113,7 @@ export default class WaterLevelScreen extends Component {
                     </Row>
                     <Row>
                         <Text>
-                            {this.state.nivel}
+                            <Label>Nivel del Tanque: {this.state.nivel}%</Label>
                         </Text>
                     </Row>
                 </Content>
