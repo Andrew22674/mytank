@@ -73,7 +73,8 @@ export default class WaterLevelScreen extends Component {
     componentDidMount() {
 
         // var userId = firebase.auth().currentUser.uid;
-        firebase.database().ref('/Stats/').once('value').then((snapshot) => {
+        //para actualizar en tiempo real utilizar on en vez de once
+        firebase.database().ref('/Stats/').on('value', (snapshot) => {
             var tanklevel = (snapshot.val() && snapshot.val().Nivel) || 0;
             var tankheight = (snapshot.val() && snapshot.val().height) || 0;
             console.log("tank level" + tanklevel);
@@ -173,16 +174,16 @@ export default class WaterLevelScreen extends Component {
                                 //__DEV__
                                 //require('../assets/images/10per.jpeg')
                                 //require(this.state.percentage > 0 && this.state.percentage < 10 ? )
-                                this.state.percentage >= 0 && this.state.percentage <= 10 ? require('../assets/images/10per.jpeg') : 
-                                this.state.percentage > 10 && this.state.percentage <=20 ? require('../assets/images/20per.jpeg') :
-                                this.state.percentage > 20 && this.state.percentage <=40 ? require('../assets/images/30per.jpeg') :
-                                this.state.percentage > 30 && this.state.percentage <=50 ? require('../assets/images/30per.jpeg') :
-                                this.state.percentage > 40 && this.state.percentage <=60 ? require('../assets/images/30per.jpeg') :
-                                this.state.percentage > 50 && this.state.percentage <=70 ? require('../assets/images/30per.jpeg') :
-                                this.state.percentage > 60 && this.state.percentage <=80 ? require('../assets/images/30per.jpeg') :
-                                this.state.percentage > 70 && this.state.percentage <=90 ? require('../assets/images/30per.jpeg') :
-                                this.state.percentage > 80 && this.state.percentage <=90 ? require('../assets/images/30per.jpeg') :
-                                this.state.percentage > 90 && this.state.percentage <=99 ? require('../assets/images/30per.jpeg') :
+                                this.state.percentage >= 0 && this.state.percentage <= 15 ? require('../assets/images/10per.jpeg') : 
+                                this.state.percentage > 15 && this.state.percentage <=25 ? require('../assets/images/20per.jpeg') :
+                                this.state.percentage > 25 && this.state.percentage <=35 ? require('../assets/images/30per.jpeg') :
+                                this.state.percentage > 35 && this.state.percentage <=45 ? require('../assets/images/40per.jpeg') :
+                                this.state.percentage > 45 && this.state.percentage <=55 ? require('../assets/images/50per.jpeg') :
+                                this.state.percentage > 55 && this.state.percentage <=65 ? require('../assets/images/60per.jpeg') :
+                                this.state.percentage > 65 && this.state.percentage <=75 ? require('../assets/images/70per.jpeg') :
+                                this.state.percentage > 75 && this.state.percentage <=85 ? require('../assets/images/80per.jpeg') :
+                                this.state.percentage > 85 && this.state.percentage <=95 ? require('../assets/images/90per.jpeg') :
+                                this.state.percentage > 95 && this.state.percentage <=99 ? require('../assets/images/90per.jpeg') :
                                 require('../assets/images/100per.jpeg')
                             }
 
