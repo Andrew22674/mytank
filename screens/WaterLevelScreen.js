@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ExpoConfigView } from '@expo/samples';
 import firebase from 'firebase';
 
-import { StyleSheet, Platform, View, TouchableHighlight, Image, StatusBar } from 'react-native';
+import { StyleSheet, Platform, View, TouchableHighlight, Image, StatusBar, ProgressBarAndroid } from 'react-native';
 import { Card, Body, Container, Content, Text, Title, Form, Button, Picker, Icon, CardItem, Left, Right, Thumbnail, Header } from 'native-base'
 import { Col, Row, Grid } from "react-native-easy-grid";
 export default class WaterLevelScreen extends Component {
@@ -87,6 +87,21 @@ export default class WaterLevelScreen extends Component {
                 </Header>
 
                 <Content contentContainerStyle={styles.container}>
+                    {/*
+                    
+                  <Row>
+                        <ProgressBarAndroid
+                            styleAttr="Horizontal"
+                            indeterminate={false}
+                            progress={0.5}
+                        />
+                    </Row>
+                
+                
+                
+                
+                    */}
+
                     <Row>
                         {/*
                            <Button onPress = {()=> this.props.navigation.goBack()}>
@@ -94,13 +109,13 @@ export default class WaterLevelScreen extends Component {
                             </Button>
                         */}
 
-                        <Image style={{ height: 80 }}
+                        <Image style={{ height: 10 }}
 
 
 
                             source={
                                 //__DEV__
-                                require('../assets/images/mediumTank.png')
+                                require('../assets/images/10per.jfif')
                             }
 
 
