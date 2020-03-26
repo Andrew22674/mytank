@@ -54,8 +54,9 @@ export default class SettingsScreen extends Component {
     this.state.capacity <= 0 ? firebase.database().ref('Stats/capacity').set(parseInt(this.state.s_capacity)):
     firebase.database().ref('Stats/capacity').set(parseInt(this.state.capacity));
 
-    this.state.sensordistance <= 0 ? firebase.database().ref('Stats/sensordistance').set(parseInt(this.state.s_sensordistance)):
+    this.state.sensordistance < 0 ? firebase.database().ref('Stats/sensordistance').set(parseInt(this.state.s_sensordistance)):
     firebase.database().ref('Stats/sensordistance').set(parseInt(this.state.sensordistance));
+    
   }
 
   componentDidMount() {
