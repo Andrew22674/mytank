@@ -253,10 +253,20 @@ render() {
                 </Row>
                 <Row>
                     <Text>
-                        <Label>Nivel del Tanque: {this.state.percentage}%</Label>
+                        <Label>Water level: {this.state.percentage}%</Label>
                     </Text>
                 </Row>
             </Content>
+
+            
+
+
+
+            
+
+
+
+
 
 
         </Container>
