@@ -11,6 +11,7 @@ import SignUpScreen from '../screens/SignUpScreen';
 import MainScreen from '../screens/MainScreen';
 //import StoresScreen from '../screens/StoresScreen';
 import WaterLevelScreen from '../screens/WaterLevelScreen';
+import DataScreen from '../screens/DataScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -91,10 +92,28 @@ SettingsStack.navigationOptions = {
 
 SettingsStack.path = '';
 
+const DataStack = createStackNavigator(
+  {
+    Data: DataScreen,
+
+  },
+  config
+);
+
+DataStack.navigationOptions = {
+  tabBarLabel: 'Data',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-information-circle' : 'md-options'} />
+  ),
+};
+
+SettingsStack.path = '';
+
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
+  DataStack,
   //SignUpStack
 });
 
