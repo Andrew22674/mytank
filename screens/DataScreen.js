@@ -77,6 +77,6 @@ const styles = StyleSheet.create({
   },
 });
 
-SettingsScreen.navigationOptions = {
-  title: 'Settings',
+DataScreen.navigationOptions = {
+  title: 'Data',
 };
