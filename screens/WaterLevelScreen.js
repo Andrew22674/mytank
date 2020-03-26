@@ -85,12 +85,6 @@ export default class WaterLevelScreen extends Component {
             if (perc >= 95) {
                 //guardar fecha cuando el tanque esté lleno
                 firebase.database().ref('Stats').update(({ fulldate: new Date() }));
-                /*Toast.show({
-                    text: 'Your tank is almost full!',
-                    buttonText: 'Okay',
-                    duration: 6000,
-                    type: "warning"
-                })*/
             }
             if(perc >= alert){
                 Toast.show({
@@ -102,7 +96,7 @@ export default class WaterLevelScreen extends Component {
             }
         
             this.setState({
-            percentage: perc
+                percentage: perc < 0 ? 0 : 100
         })
         }).then(() => {
 
@@ -117,33 +111,14 @@ export default class WaterLevelScreen extends Component {
         var perc = (dist / tankheight) * 100;
         
 
-        /*if(perc > 95){
-           // firebase.database().ref('Stats/fulldate').set(firebase.database.ServerValue.TIMESTAMP);
-            console.log("Tank is almost full")
-            firebase.database().ref('Stats').set(({fulldate: new Date()}));
-        }*/
-        /* if (perc > 95) {
-             console.log("true")
-             firebase.database().ref('Stats').update(({ fulldate: new Date() }));
-         } else {
-             console.log("false")
-         }*/
         this.setState({
-            percentage: perc
+            percentage: perc < 0 ? 0 : perc
         })
 
 
     })
 });
 
-        /*
-                console.log("tank percentage: " + this.state.percentage);
-                if (this.state.percentage > 95) {
-                    console.log("tank is nearly full");
-                }
-                else {
-                    console.log("not")
-                }*/
 
     }
 
@@ -156,9 +131,8 @@ calculateLevel() {
 
     //si el tanque esta lleno, guardamos la fecha en la que se llenó
 
-
     this.setState({
-        percentage: perc
+        percentage: perc < 0 ? 0 : perc
     })
 }
 
