@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View, YellowBox } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import _ from 'lodash';
+import { Root } from "native-base";
 
 import AppNavigator from './navigation/AppNavigator';
 import { db } from './src/config';
@@ -13,9 +14,9 @@ import { db } from './src/config';
 YellowBox.ignoreWarnings(['Setting a timer']);
 const _console = _.clone(console);
 console.warn = message => {
-    if (message.indexOf('Setting a timer') <= -1) {
-        _console.warn(message);
-    }
+  if (message.indexOf('Setting a timer') <= -1) {
+    _console.warn(message);
+  }
 };
 
 
@@ -34,8 +35,10 @@ export default function App(props) {
   } else {
     return (
       <View style={styles.container}>
+        <Root>
+          <AppNavigator />
+        </Root>
 
-        <AppNavigator />
       </View>
     );
   }
@@ -54,7 +57,7 @@ async function loadResourcesAsync() {
       // remove this if you are not using it in your app
       'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
       'Roboto': require('./assets/fonts/Roboto.ttf'),
-          'Roboto_medium': require('./assets/fonts/Roboto_medium.ttf'),
+      'Roboto_medium': require('./assets/fonts/Roboto_medium.ttf'),
     }),
   ]);
 }

@@ -21,24 +21,42 @@ export default class SettingsScreen extends Component {
     this.state = {
       email: 'Email',
       password: 'Password',
-      height: 0
+      s_height: 0,
+      s_alertperc: 90,
+      height: 0,
+      alertperc: 0
     };
     this.handleChange = this.handleChange.bind(this);
-    this.saveHeight = this.saveHeight.bind(this);
+    this.saveStuff = this.saveStuff.bind(this);
   }
 
   handleChange(evt) {
     const value = evt.target.value;
     this.setState({
       [evt.target.name]: value
-    }), ()=>{
+    }), () => {
       console.log(this.state.height)
     };
     console.log(this.state.height)
   }
 
-  saveHeight(){
+  saveStuff() {
+    this.state.height <= 0 ? firebase.database().ref('Stats/height').set(parseInt(this.state.s_height)) : 
     firebase.database().ref('Stats/height').set(parseInt(this.state.height));
+    
+    this.state.alertperc <= 0 || this.state.alertperc > 100 ? firebase.database().ref('Stats/alertpercentage').set(parseInt(this.state.s_alertperc)):
+    firebase.database().ref('Stats/alertpercentage').set(parseInt(this.state.alertperc));
+  }
+
+  componentDidMount() {
+    firebase.database().ref('/Stats/').once('value').then((snapshot) => {
+      var alertperc = (snapshot.val() && snapshot.val().alertpercentage) || 0;
+      var tankheight = (snapshot.val() && snapshot.val().height) || 0;
+      this.setState({
+        s_alertperc: alertperc,
+        s_height: tankheight
+      })
+    })
   }
 
   handleLogout = () => {
@@ -58,26 +76,43 @@ export default class SettingsScreen extends Component {
     return (
       <Container style={styles.container}>
         <Content>
-          <Form>
+          <Text>
+            Your tank height
+          </Text>
+          <Form style={{ padding: 20 }}>
             <Item>
-              <Input 
-              name = "height"
-              //value={this.state.height}
-              onChangeText={val => this.setState({ height: val })}
-              placeholder="Water tank height" />
+              <Input
+                name="height"
+                //value={this.state.height}
+                onChangeText={val => this.setState({ height: val })}
+                placeholder={(this.state.s_height).toString()} />
+            </Item>
+          </Form>
+          <Text>
+            Send alert when reaching a certain percentage
+          </Text>
+          <Form style={{ padding: 20 }}>
+            <Item>
+              <Input
+                name="alertperc"
+                //value={this.state.height}
+                onChangeText={val => this.setState({ alertperc: val })}
+                placeholder= {(this.state.s_alertperc).toString()} />
             </Item>
           </Form>
 
-          <Button
-            title= "Save height"
-            onPress={this.saveHeight}
+          <Button style={{ padding: 20}}
+            title="OK"
+            onPress={this.saveStuff}
           />
 
-          <Button
+        </Content>
+        <View style={{ paddingBottom: 30 }}>
+          <Button 
             title="Log out"
             onPress={this.handleLogout}
           />
-        </Content>
+        </View>
       </Container>
 
 
