@@ -107,11 +107,13 @@ export default class WaterLevelScreen extends Component {
         }).then(() => {
 
     firebase.database().ref('/Stats/').on('value', (snapshot) => {
-        var sensordistance = (snapshot.val() && snapshot.val().sensordata) || 0;
+        var sensordata = (snapshot.val() && snapshot.val().sensordata) || 0;
         //var alert = (snapshot.val() && snapshot.val().alertpercentage) || 0;
         var tankheight = (snapshot.val() && snapshot.val().height) || 0;
-        console.log("sensor distance " + sensordistance);
-        var dist = tankheight - sensordistance;
+        var sensordistance = (snapshot.val() && snapshot.val().sensordistance) || 0;
+        console.log("sensor data " + sensordata);
+        var calcdata = sensordata - sensordistance;
+        var dist = tankheight - calcdata;
         var perc = (dist / tankheight) * 100;
         
 

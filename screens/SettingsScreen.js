@@ -23,8 +23,12 @@ export default class SettingsScreen extends Component {
       password: 'Password',
       s_height: 0,
       s_alertperc: 90,
+      s_capacity: 0,
+      s_sensordistance: 0,
       height: 0,
-      alertperc: 0
+      alertperc: 0,
+      capacity: 0,
+      sensordistance:0
     };
     this.handleChange = this.handleChange.bind(this);
     this.saveStuff = this.saveStuff.bind(this);
@@ -46,15 +50,25 @@ export default class SettingsScreen extends Component {
     
     this.state.alertperc <= 0 || this.state.alertperc > 100 ? firebase.database().ref('Stats/alertpercentage').set(parseInt(this.state.s_alertperc)):
     firebase.database().ref('Stats/alertpercentage').set(parseInt(this.state.alertperc));
+
+    this.state.capacity <= 0 ? firebase.database().ref('Stats/capacity').set(parseInt(this.state.s_capacity)):
+    firebase.database().ref('Stats/capacity').set(parseInt(this.state.capacity));
+
+    this.state.sensordistance <= 0 ? firebase.database().ref('Stats/sensordistance').set(parseInt(this.state.s_sensordistance)):
+    firebase.database().ref('Stats/sensordistance').set(parseInt(this.state.sensordistance));
   }
 
   componentDidMount() {
     firebase.database().ref('/Stats/').once('value').then((snapshot) => {
       var alertperc = (snapshot.val() && snapshot.val().alertpercentage) || 0;
       var tankheight = (snapshot.val() && snapshot.val().height) || 0;
+      var cap = (snapshot.val() && snapshot.val().capacity) || 0;
+      var sensordistance = (snapshot.val() && snapshot.val().sensordistance) || 0;
       this.setState({
         s_alertperc: alertperc,
-        s_height: tankheight
+        s_height: tankheight,
+        s_capacity: cap,
+        s_sensordistance:sensordistance
       })
     })
   }
@@ -77,7 +91,7 @@ export default class SettingsScreen extends Component {
       <Container style={styles.container}>
         <Content>
           <Text>
-            Your tank height
+            Distance from bottom to highest water level on your tank (cm)
           </Text>
           <Form style={{ padding: 20 }}>
             <Item>
@@ -86,6 +100,18 @@ export default class SettingsScreen extends Component {
                 //value={this.state.height}
                 onChangeText={val => this.setState({ height: val })}
                 placeholder={(this.state.s_height).toString()} />
+            </Item>
+          </Form>
+          <Text>
+            Distance from sensor to highest water point
+          </Text>
+          <Form style={{ padding: 20 }}>
+            <Item>
+              <Input
+                name="height"
+                //value={this.state.height}
+                onChangeText={val => this.setState({ sensordistance: val })}
+                placeholder={(this.state.s_sensordistance).toString()} />
             </Item>
           </Form>
           <Text>
@@ -100,6 +126,19 @@ export default class SettingsScreen extends Component {
                 placeholder= {(this.state.s_alertperc).toString()} />
             </Item>
           </Form>
+          <Text>
+            Your tank capacity in galons
+          </Text>
+          <Form style={{ padding: 20 }}>
+            <Item>
+              <Input
+                name="capacity"
+                //value={this.state.height}
+                onChangeText={val => this.setState({ capacity: val })}
+                placeholder= {(this.state.s_capacity).toString()} />
+            </Item>
+          </Form>
+
 
           <Button style={{ padding: 20}}
             title="OK"
